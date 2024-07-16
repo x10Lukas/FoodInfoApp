@@ -277,6 +277,26 @@ input {
     color: #EBEBF0;
 }
 
+.score-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+  
+.score-image {
+    width: auto;
+    height: auto;
+}
+  
+.nova-image {
+    width: auto;
+    height: auto;
+}
+  
+  
+
 @media (prefers-color-scheme: dark) {
     body {
       background-color: #000000;

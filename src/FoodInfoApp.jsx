@@ -49,7 +49,13 @@ const FoodInfoApp = () => {
     carbs: product.nutriments.carbohydrates_100g || 'N/A',
     fat: product.nutriments.fat_100g || 'N/A',
     ingredients: product.ingredients_text_de ? product.ingredients_text_de.replace(/_/g, '') : 'Keine Zutatenliste verfügbar',
-    image: product.image_front_small_url
+    image: product.image_front_small_url,
+    nutriscore: product.nutriscore_grade || 'N/A',
+    nutriscore_image: `https://static.openfoodfacts.org/images/misc/nutriscore-${product.nutriscore_grade}.svg`,
+    nova: product.nova_group || 'N/A',
+    nova_image: `https://static.openfoodfacts.org/images/attributes/dist/nova-group-${product.nova_group}.svg`,
+    ecoscore: product.ecoscore_grade || 'N/A',
+    ecoscore_image: `https://static.openfoodfacts.org/images/attributes/dist/ecoscore-${product.ecoscore_grade}.svg`
   });
 
   const handleSearch = () => {
@@ -98,6 +104,23 @@ const FoodInfoApp = () => {
                     <p className="description">Fett: {foodInfo.fat}g</p>
                     <h3 className="description">Zutaten:</h3>
                     <p className="description">{foodInfo.ingredients}</p>
+                    {foodInfo.nutriscore !== 'N/A' && (
+                      <div className="score-container">
+                        <div className="nuti-score">
+                          <img src={foodInfo.nutriscore_image} alt={`Nutri-Score ${foodInfo.nutriscore}`} className="nutriscore-image" />
+                        </div>
+                        {foodInfo.nova !== 'N/A' && (
+                          <div className="score">
+                            <img src={foodInfo.nova_image} alt={`NOVA ${foodInfo.nova}`} className="nova-image" />
+                          </div>
+                        )}
+                        {foodInfo.ecoscore !== 'N/A' && (
+                          <div className="score">
+                            <img src={foodInfo.ecoscore_image} alt={`Eco-Score ${foodInfo.ecoscore}`} className="eco-image" />
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
