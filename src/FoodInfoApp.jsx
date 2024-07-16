@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Info, Settings } from 'lucide-react';
+import { Info, Cog } from 'lucide-react';
 import './FoodInfoApp.css';
 
 const FoodInfoApp = () => {
@@ -135,7 +135,7 @@ const FoodInfoApp = () => {
           onClick={() => setActiveTab('settings')}
           className={activeTab === 'settings' ? 'active' : ''}
         >
-          <Settings size={24} />
+          <Cog size={26} />
           <span>Einstellungen</span>
         </button>
       </nav>
