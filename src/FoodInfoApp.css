@@ -196,7 +196,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(242, 242, 247, 0.8);
+    background-color: #fff;
     backdrop-filter: blur(10px);
     padding: 5px 0;
     position: fixed;
