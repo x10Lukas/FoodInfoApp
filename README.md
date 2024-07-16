@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Food Info App
+Welcome to the Food Info App, a simple and intuitive application designed to help you eat healthy and stay informed. This app utilizes React.js and JSX to provide a user-friendly interface inspired by iOS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+- **Quick Search:** Search for foods by name or barcode.
+- **Detailed Information:** Get instant details on calories, proteins, carbohydrates, fat, and ingredients.
+- **Dark Mode:** Enable Dark Mode for comfortable browsing at night.
+- **Settings:** Customize the app to your preferences by switching between different modes.
 
-## Available Scripts
+## Live-Demo
+Explore a live demo of the app [here](https://foodinfoapp.netlify.app/).
 
-In the project directory, you can run:
+## Installation
+To install the app locally, follow these steps:
 
-### `npm start`
+1. **Clone the repository:**
+```
+git clone https://github.com/dein-benutzername/food-info-app.git
+cd food-info-app
+```
+2. **Install dependencies:**
+```
+npm install
+```
+3. **Start the development server:**
+```
+npm start
+```
+4. **Open the app:**
+Open your browser and go to `http://localhost:3000` to test the app locally.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Contributing
+- Fork the repository
+- Create a branch (`git checkout -b feature/your-feature`)
+- Commit your changes (`git commit -am 'Add some feature'`)
+- Push to the branch (`git push origin feature/dein-feature`)
+- Create a new Pull Request
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies
+- React.js
+- JSX
+- HTML/CSS
+- JavaScript
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Authors
+- Lukas9627
