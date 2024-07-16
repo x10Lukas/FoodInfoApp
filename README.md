@@ -1,46 +1,46 @@
-## Food Info App
-Willkommen zur Food Info App, einer einfachen und intuitiven Anwendung, die entwickelt wurde, um dir dabei zu helfen, dich gesund und informiert zu ernähren. Diese App verwendet React.js und JSX, um eine benutzerfreundliche Oberfläche zu bieten, die an iOS angelehnt ist.
+# Food Info App
+Welcome to the Food Info App, a simple and intuitive application designed to help you eat healthy and stay informed. This app utilizes React.js and JSX to provide a user-friendly interface inspired by iOS.
 
-## Funktionen
-- **Schnelle Suche:** Suche nach Lebensmitteln entweder nach Namen oder Barcode.
-- **Detaillierte Informationen:** Erhalte sofortige Informationen zu Kalorien, Proteinen, Kohlenhydraten, Fett und Zutaten.
-- **Dark Mode:** Schalte den Dark Mode ein, um auch nachts komfortabel zu browsen.
-- **Einstellungen:** Passe die App an deine Vorlieben an, indem du zwischen verschiedenen Modi wechselst.
+## Features
+- **Quick Search:** Search for foods by name or barcode.
+- **Detailed Information:** Get instant details on calories, proteins, carbohydrates, fat, and ingredients.
+- **Dark Mode:** Enable Dark Mode for comfortable browsing at night.
+- **Settings:** Customize the app to your preferences by switching between different modes.
 
 ## Live-Demo
-Eine Live-Demo der App ist verfügbar unter [Food Info App](https://foodinfoapp.netlify.app/).
+Explore a live demo of the app [here](https://foodinfoapp.netlify.app/).
 
 ## Installation
-Um die App lokal zu installieren, folge diesen Schritten:
+To install the app locally, follow these steps:
 
-1. **Clone das Repository:**
+1. **Clone the repository:**
 ```
 git clone https://github.com/dein-benutzername/food-info-app.git
 cd food-info-app
 ```
-2. **Installiere die Abhängigkeiten:**
+2. **Install dependencies:**
 ```
 npm install
 ```
-3. **Starte die Entwicklungsserver:**
+3. **Start the development server:**
 ```
 npm start
 ```
-4. **Öffne die App:**
-Öffne deinen Browser und gehe zu http://localhost:3000, um die App lokal zu testen.
+4. **Open the app:**
+Open your browser and go to `http://localhost:3000` to test the app locally.
 
-## Beitrag
-- Fork das Repository
-- Erstelle einen Branch (git checkout -b feature/dein-feature)
-- Commit deine Änderungen (git commit -am 'Add some feature')
-- Push zum Branch (git push origin feature/dein-feature)
-- Erstelle eine neue Pull-Anfrage
+## Contributing
+- Fork the repository
+- Create a branch (`git checkout -b feature/your-feature`)
+- Commit your changes (`git commit -am 'Add some feature'`)
+- Push to the branch (`git push origin feature/dein-feature`)
+- Create a new Pull Request
 
-## Technologien
+## Technologies
 - React.js
 - JSX
 - HTML/CSS
 - JavaScript
 
-## Autoren
+## Authors
 - Lukas9627
