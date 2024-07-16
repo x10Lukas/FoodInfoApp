@@ -5,7 +5,7 @@ import './FoodInfoApp.css';
 const FoodInfoApp = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [foodInfo, setFoodInfo] = useState(null);
+  const [foodInfo, setFoodInfo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('food');
@@ -28,11 +28,11 @@ const FoodInfoApp = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      
+
       if (data.product) {
-        setFoodInfo(processProductData(data.product));
+        setFoodInfo([processProductData(data.product)]);
       } else if (data.products && data.products.length > 0) {
-        setFoodInfo(processProductData(data.products[0]));
+        setFoodInfo(data.products.map(processProductData));
       } else {
         setError('Keine Informationen für dieses Produkt gefunden.');
       }
@@ -43,6 +43,7 @@ const FoodInfoApp = () => {
   };
 
   const processProductData = (product) => ({
+    id: product.id,
     name: product.product_name || 'Unbekannter Name',
     calories: product.nutriments['energy-kcal_100g'] || 'N/A',
     protein: product.nutriments.proteins_100g || 'N/A',
@@ -89,39 +90,38 @@ const FoodInfoApp = () => {
               {loading && <p className="description">Laden...</p>}
               {error && <p className="error-message">{error}</p>}
 
-              {foodInfo && (
+              {foodInfo.length > 0 && (
                 <div className="food-info-display">
-                  <h2 className="food-name">{foodInfo.name}</h2>
-                  {foodInfo.image && (
-                    <div className="food-image-container">
-                      <img src={foodInfo.image} alt={foodInfo.name} className="food-image" />
-                    </div>
-                  )}
-                  <div className="food-details">
-                    <p className="description">Kalorien: {foodInfo.calories} kcal</p>
-                    <p className="description">Protein: {foodInfo.protein}g</p>
-                    <p className="description">Kohlenhydrate: {foodInfo.carbs}g</p>
-                    <p className="description">Fett: {foodInfo.fat}g</p>
-                    <h3 className="description">Zutaten:</h3>
-                    <p className="description">{foodInfo.ingredients}</p>
-                    {foodInfo.nutriscore !== 'N/A' && (
-                      <div className="score-container">
-                        <div className="nuti-score">
-                          <img src={foodInfo.nutriscore_image} alt={`Nutri-Score ${foodInfo.nutriscore}`} className="nutriscore-image" />
+                  {foodInfo.map((food) => (
+                    <div key={food.id} className="food-item">
+                      <h2 className="food-name">{food.name}</h2>
+                      {food.image && (
+                        <div className="food-image-container">
+                          <img src={food.image} alt={food.name} className="food-image" />
                         </div>
-                        {foodInfo.nova !== 'N/A' && (
-                          <div className="score">
-                            <img src={foodInfo.nova_image} alt={`NOVA ${foodInfo.nova}`} className="nova-image" />
-                          </div>
-                        )}
-                        {foodInfo.ecoscore !== 'N/A' && (
-                          <div className="score">
-                            <img src={foodInfo.ecoscore_image} alt={`Eco-Score ${foodInfo.ecoscore}`} className="eco-image" />
-                          </div>
-                        )}
+                      )}
+                      <div className="food-details">
+                        <p className="description">Kalorien: {food.calories} kcal</p>
+                        <p className="description">Protein: {food.protein}g</p>
+                        <p className="description">Kohlenhydrate: {food.carbs}g</p>
+                        <p className="description">Fett: {food.fat}g</p>
+                        <h3 className="description">Zutaten:</h3>
+                        <p className="description">{food.ingredients}</p>
+                        <div className="score-container">
+                          {food.nutriscore !== 'N/A' && (
+                            <img src={food.nutriscore_image} alt={`Nutri-Score ${food.nutriscore}`} className="score-image" />
+                          )}
+                          {food.nova !== 'N/A' && (
+                            <img src={food.nova_image} alt={`NOVA ${food.nova}`} className="nova-image" />
+                          )}
+                          {food.ecoscore !== 'N/A' && (
+                            <img src={food.ecoscore_image} alt={`Eco-Score ${food.ecoscore}`} className="score-image" />
+                          )}
+                        </div>
+                        <hr></hr>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               )}
             </>

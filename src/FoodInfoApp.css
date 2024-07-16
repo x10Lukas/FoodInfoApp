@@ -6,9 +6,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: #F2F2F7;
     color: #000000;
-}
+  }
   
-.ios-app {
+  .ios-app {
     max-width: 414px;
     margin: 0 auto;
     background-color: #F2F2F7;
@@ -16,23 +16,23 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-}
+  }
   
-.ios-app.dark-mode {
+  .ios-app.dark-mode {
     background-color: #000000;
     color: #FFFFFF;
-}
+  }
   
-.status-bar {
+  .status-bar {
     height: 44px;
     background-color: #F2F2F7;
-}
+  }
   
-.dark-mode .status-bar {
+  .dark-mode .status-bar {
     background-color: #000000;
-}
+  }
   
-header {
+  header {
     background-color: rgba(242, 242, 247, 0.8);
     backdrop-filter: blur(10px);
     padding: 10px 16px;
@@ -43,42 +43,44 @@ header {
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid rgba(60, 60, 67, 0.29);
-}
+    margin-top: 10px;
+    margin-top: -50px;
+  }
   
-.dark-mode header {
+  .dark-mode header {
     background-color: rgba(0, 0, 0, 0.8);
     border-bottom-color: rgba(84, 84, 88, 0.65);
-}
+  }
   
-h1 {
+  h1 {
     margin: 0;
     font-size: 35px;
     font-weight: 700;
     margin-right: auto;
-}
-
-h3 {
+  }
+  
+  h3 {
     margin: 0;
     font-size: 20px;
     font-weight: 700;
     margin-left: auto;
-}
+  }
   
-main {
+  main {
     flex-grow: 1;
     overflow-y: auto;
     padding-bottom: 83px;
-}
+  }
   
-.ios-content {
+  .ios-content {
     padding: 20px 16px;
-}
+  }
   
-.search-box {
+  .search-box {
     margin-bottom: 20px;
-}
+  }
   
-input {
+  input {
     width: 100%;
     padding: 12px 15px;
     font-size: 17px;
@@ -86,14 +88,14 @@ input {
     border-radius: 10px;
     background-color: rgba(118, 118, 128, 0.12);
     color: #000000;
-}
+  }
   
-.dark-mode input {
+  .dark-mode input {
     background-color: rgba(118, 118, 128, 0.24);
     color: #FFFFFF;
-}
+  }
   
-.ios-button {
+  .ios-button {
     width: 100%;
     padding: 13px;
     background-color: #007AFF;
@@ -104,60 +106,60 @@ input {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+  }
   
-.ios-button:active {
+  .ios-button:active {
     background-color: #0056b3;
-}
+  }
   
-.error-message {
+  .error-message {
     color: #FF3B30;
     text-align: center;
     margin-top: 20px;
-}
+  }
   
-.settings-list {
+  .settings-list {
     list-style-type: none;
     padding: 0;
     margin: 16px 0 0 0;
     background-color: #FFFFFF;
     border-radius: 12px;
-}
+  }
   
-.dark-mode .settings-list {
+  .dark-mode .settings-list {
     background-color: #1C1C1E;
-}
+  }
   
-.settings-list li {
+  .settings-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 16px;
     border-bottom: 1px solid rgba(60, 60, 67, 0.29);
-}
+  }
   
-.dark-mode .settings-list li {
+  .dark-mode .settings-list li {
     border-bottom-color: rgba(84, 84, 88, 0.65);
-}
+  }
   
-.settings-list li:last-child {
+  .settings-list li:last-child {
     border-bottom: none;
-}
+  }
   
-.ios-switch {
+  .ios-switch {
     position: relative;
     display: inline-block;
     width: 51px;
     height: 31px;
-}
+  }
   
-.ios-switch input {
+  .ios-switch input {
     opacity: 0;
     width: 0;
     height: 0;
-}
+  }
   
-.ios-switch .slider {
+  .ios-switch .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -167,9 +169,9 @@ input {
     background-color: #E5E5EA;
     transition: .4s;
     border-radius: 34px;
-}
+  }
   
-.ios-switch .slider:before {
+  .ios-switch .slider:before {
     position: absolute;
     content: "";
     height: 27px;
@@ -180,17 +182,17 @@ input {
     transition: .4s;
     border-radius: 50%;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 3px 1px rgba(0, 0, 0, 0.06);
-}
+  }
   
-.ios-switch input:checked + .slider {
+  .ios-switch input:checked + .slider {
     background-color: #34C759;
-}
+  }
   
-.ios-switch input:checked + .slider:before {
+  .ios-switch input:checked + .slider:before {
     transform: translateX(20px);
-}
+  }
   
-.tab-bar {
+  .tab-bar {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -205,13 +207,13 @@ input {
     margin: 0 auto;
     height: 90px;
     border-top: 1px solid rgba(60, 60, 67, 0.29);
-}
+  }
   
-.dark-mode .tab-bar {
+  .dark-mode .tab-bar {
     background-color: rgba(28, 28, 30, 0.8);
-}
+  }
   
-.tab-bar button {
+  .tab-bar button {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -224,81 +226,87 @@ input {
     flex: 1;
     transition: color 0.3s ease;
     margin-bottom: 15px;
-}
+  }
   
-.tab-bar button.active {
+  .tab-bar button.active {
     color: #007AFF;
-}
+  }
   
-.dark-mode .tab-bar button.active {
+  .dark-mode .tab-bar button.active {
     color: #0A84FF;
-}
+  }
   
-.tab-bar button svg {
+  .tab-bar button svg {
     margin-bottom: 4px;
-}
-
-.food-info-display {
+  }
+  
+  .food-info-display {
     margin-top: 30px;
     text-align: center;
-}
+  }
   
-.food-name {
+  .food-name {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 15px;
-}
+  }
   
-.food-image-container {
+  .food-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
     height: 200px; /* Feste Höhe für konsistentes Layout */
-}
+  }
   
-.food-image {
+  .food-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-}
+  }
   
-.food-details {
+  .food-details {
     text-align: left;
-}
+  }
   
-.description {
+  .description {
     font-size: 16px;
     color: #48484A;
     margin: 8px 0;
-}
+  }
   
-.dark-mode .description {
+  .dark-mode .description {
     color: #EBEBF0;
-}
-
-.score-container {
+  }
+  
+  .score-container {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
     text-align: center;
-}
+  }
   
-.score-image {
-    width: auto;
-    height: auto;
-}
+  .score-image {
+    width: 120px; 
+    height: 80px;
+    object-fit: contain;
+  }
   
-.nova-image {
-    width: auto;
-    height: auto;
-}
+  .nova-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
   
-  
-
-@media (prefers-color-scheme: dark) {
+  hr {
+    border: none;
+    border-top: 1px solid rgba(84, 84, 88, 0.65);
+    margin: 20px 0;
+  }
+  @media (prefers-color-scheme: dark) {
     body {
       background-color: #000000;
     }
-}
+  }
+  
