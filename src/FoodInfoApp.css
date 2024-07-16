@@ -95,7 +95,7 @@ input {
   
 .ios-button {
     width: 100%;
-    padding: 15px;
+    padding: 13px;
     background-color: #007AFF;
     color: white;
     border: none;
@@ -203,7 +203,7 @@ input {
     right: 0;
     max-width: 414px;
     margin: 0 auto;
-    height: 83px;
+    height: 90px;
     border-top: 1px solid rgba(60, 60, 67, 0.29);
 }
   
@@ -223,6 +223,7 @@ input {
     cursor: pointer;
     flex: 1;
     transition: color 0.3s ease;
+    margin-bottom: 15px;
 }
   
 .tab-bar button.active {
