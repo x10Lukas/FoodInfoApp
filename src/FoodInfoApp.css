@@ -116,32 +116,6 @@ input {
     margin-top: 20px;
 }
   
-.weather-display {
-    margin-top: 30px;
-    text-align: center;
-}
-  
-.weather-icon {
-    width: 120px;
-    height: 120px;
-}
-  
-.temperature {
-    font-size: 64px;
-    font-weight: 200;
-    margin: 10px 0;
-}
-  
-.description {
-    font-size: 20px;
-    color: #48484A;
-    text-transform: capitalize;
-}
-  
-.dark-mode .description {
-    color: #EBEBF0;
-}
-  
 .settings-list {
     list-style-type: none;
     padding: 0;

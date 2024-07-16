@@ -1,6 +1,5 @@
-// FoodInfoApp.jsx
 import React, { useState } from 'react';
-import { Search, Info, Settings } from 'lucide-react';
+import { Info, Settings } from 'lucide-react';
 import './FoodInfoApp.css';
 
 const FoodInfoApp = () => {
