@@ -37,7 +37,7 @@ const BarcodeScanner = ({ onResult, onClose }) => {
           setIsLoading(false);
         }
       }
-    };
+    };    
 
     initializeCamera();
 
