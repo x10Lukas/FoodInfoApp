@@ -78,12 +78,15 @@ body {
   
   .search-box {
     margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
   }
   
   input {
     width: 100%;
-    padding: 12px 15px;
-    font-size: 17px;
+    padding: 12px 15px 12px 40px;
+    font-size: 16px;
     border: none;
     border-radius: 10px;
     background-color: rgba(118, 118, 128, 0.12);
@@ -95,6 +98,23 @@ body {
     color: #FFFFFF;
   }
   
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    pointer-events: none;
+    color: #8E8E93;
+  }
+
+  .clear-button, .barcode-scan-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    color: #8E8E93;
+  }
+
   .ios-button {
     width: 100%;
     padding: 13px;
@@ -102,7 +122,7 @@ body {
     color: white;
     border: none;
     border-radius: 12px;
-    font-size: 17px;
+    font-size: 14.5px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -134,7 +154,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
+    padding: 8px 16px;
     border-bottom: 1px solid rgba(60, 60, 67, 0.29);
   }
   
@@ -305,6 +325,86 @@ body {
     border-top: 1px solid rgba(84, 84, 88, 0.65);
     margin: 20px 0;
   }
+
+  .search-box {
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dark-mode input {
+    background-color: rgba(118, 118, 128, 0.24);
+    color: #FFFFFF;
+  }
+
+  .barcode-scan-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #007AFF;
+  }
+  
+  .dark-mode .barcode-scan-button {
+    color: #0A84FF;
+  }
+
+  .barcode-scanner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .barcode-scanner video {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .close-scanner {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .scanner-error, .scanner-loading {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .scanner-loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
   @media (prefers-color-scheme: dark) {
     body {
       background-color: #000000;

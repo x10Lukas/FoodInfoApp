@@ -1,20 +1,99 @@
-import React, { useState } from 'react';
-import { Info, Cog } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Info, Cog, ScanBarcode, X, Search } from 'lucide-react';
+import { useZxing } from "react-zxing";
 import './FoodInfoApp.css';
+
+const BarcodeScanner = ({ onResult, onClose }) => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { ref } = useZxing({
+    onResult(result) {
+      onResult(result.getText());
+    },
+    onError(error) {
+      console.error(error);
+      setError("Fehler beim Scannen. Bitte versuchen Sie es erneut.");
+    },
+  });
+
+  useEffect(() => {
+    let mounted = true;
+
+    const initializeCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        if (mounted) {
+          if (ref.current) {
+            ref.current.srcObject = stream;
+          }
+          setIsLoading(false);
+        }
+      } catch (err) {
+        console.error("Error accessing the camera", err);
+        if (mounted) {
+          setError("Kamera nicht verfügbar. Bitte überprüfen Sie die Berechtigungen und versuchen Sie es erneut.");
+          setIsLoading(false);
+        }
+      }
+    };
+
+    initializeCamera();
+
+    return () => {
+      mounted = false;
+      if (ref.current && ref.current.srcObject) {
+        ref.current.srcObject.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, [ref]);
+
+  return (
+    <div className="barcode-scanner">
+      {isLoading ? (
+        <div className="scanner-loading">Kamera wird initialisiert...</div>
+      ) : error ? (
+        <div className="scanner-error">{error}</div>
+      ) : (
+        <video ref={ref} autoPlay playsInline />
+      )}
+      <button className="close-scanner" onClick={onClose}>
+        <X size={24} />
+      </button>
+    </div>
+  );
+};
 
 const FoodInfoApp = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [activeTab, setActiveTab] = useState('food');
   const [searchTerm, setSearchTerm] = useState('');
   const [foodInfo, setFoodInfo] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('food');
+  const [error, setError] = useState('');
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
+  const [cameraPermissionState, setCameraPermissionState] = useState(null);
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
+
+  const handleSearch = () => {
+    if (searchTerm.trim() === '') {
+      setError('Bitte geben Sie einen Suchbegriff ein.');
+      return;
+    }
+    fetchFoodInfo(searchTerm);
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm('');
+    setFoodInfo([]);
+    setError('');
+  };
 
   const fetchFoodInfo = async (query) => {
     setLoading(true);
     setError(null);
+    console.log(`Fetching food info for: ${query}`);
     try {
       let url;
       if (/^\d+$/.test(query)) {
@@ -29,6 +108,8 @@ const FoodInfoApp = () => {
       }
       const data = await response.json();
 
+      console.log('API response data:', data);
+
       if (data.product) {
         setFoodInfo([processProductData(data.product)]);
       } else if (data.products && data.products.length > 0) {
@@ -37,6 +118,7 @@ const FoodInfoApp = () => {
         setError('Keine Informationen für dieses Produkt gefunden.');
       }
     } catch (err) {
+      console.error('Fehler beim Abrufen der Daten:', err);
       setError(`Fehler beim Abrufen der Daten: ${err.message}`);
     }
     setLoading(false);
@@ -59,17 +141,51 @@ const FoodInfoApp = () => {
     ecoscore_image: `https://static.openfoodfacts.org/images/attributes/dist/ecoscore-${product.ecoscore_grade}.svg`
   });
 
-  const handleSearch = () => {
-    if (searchTerm.trim()) {
-      fetchFoodInfo(searchTerm);
+  const checkCameraPermission = async () => {
+    try {
+      const result = await navigator.permissions.query({ name: 'camera' });
+      setCameraPermissionState(result.state);
+      result.onchange = () => setCameraPermissionState(result.state);
+    } catch (error) {
+      console.error("Error checking camera permission:", error);
+      setCameraPermissionState('prompt');
     }
+  };
+
+  useEffect(() => {
+    checkCameraPermission();
+  }, []);
+
+  const handleBarcodeScan = async () => {
+    if (cameraPermissionState === 'granted') {
+      setIsScannerOpen(true);
+    } else {
+      try {
+        await navigator.mediaDevices.getUserMedia({ video: true });
+        setIsScannerOpen(true);
+        checkCameraPermission();
+      } catch (err) {
+        console.error("Error accessing the camera", err);
+        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+          alert("Kamera-Zugriff wurde verweigert. Bitte erteilen Sie die Berechtigung in Ihren Browsereinstellungen und laden Sie die Seite neu.");
+        } else {
+          alert("Es gab ein Problem beim Zugriff auf die Kamera. Bitte stellen Sie sicher, dass Ihre Kamera funktioniert und nicht von einer anderen App verwendet wird.");
+        }
+      }
+    }
+  };
+
+  const handleScanResult = (result) => {
+    setSearchTerm(result);
+    setIsScannerOpen(false);
+    fetchFoodInfo(result);
   };
 
   return (
     <div className={`ios-app ${darkMode ? 'dark-mode' : ''}`}>
       <div className="status-bar"></div>
       <header>
-        <h1>{activeTab === 'food' ? 'Food Info' : 'Einstellungen'}</h1>
+        <h1>{activeTab === 'food' ? 'Food Info App' : 'Einstellungen'}</h1>
       </header>
       <main>
         <div className="ios-content">
@@ -80,12 +196,31 @@ const FoodInfoApp = () => {
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Lebensmittel oder Barcode eingeben..."
+                  placeholder="Lebensmittel eingeben oder scannen" // Das zusätzliche Leerzeichen sorgt für Platz zwischen dem Symbol und dem Text
                 />
+                <span className="search-icon">
+                  <Search size={22} />
+                </span>
+                {searchTerm ? (
+                  <button onClick={handleClearSearch} className="clear-button">
+                    <X size={24} />
+                  </button>
+                ) : (
+                  <button onClick={handleBarcodeScan} className="barcode-scan-button">
+                    <ScanBarcode size={24} />
+                  </button>
+                )}
               </div>
               <button className="ios-button" onClick={handleSearch}>
                 Suchen
               </button>
+
+              {isScannerOpen && (
+                <BarcodeScanner
+                  onResult={handleScanResult}
+                  onClose={() => setIsScannerOpen(false)}
+                />
+              )}
 
               {loading && <p className="description">Laden...</p>}
               {error && <p className="error-message">{error}</p>}
@@ -140,7 +275,6 @@ const FoodInfoApp = () => {
                   <span className="slider"></span>
                 </label>
               </li>
-              {/* Hier können weitere Einstellungsoptionen hinzugefügt werden */}
             </ul>
           )}
         </div>
