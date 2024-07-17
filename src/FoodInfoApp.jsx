@@ -19,13 +19,14 @@ const BarcodeScanner = ({ onResult, onClose }) => {
 
   useEffect(() => {
     let mounted = true;
+    const currentRef = ref.current;
 
     const initializeCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
         if (mounted) {
-          if (ref.current) {
-            ref.current.srcObject = stream;
+          if (currentRef) {
+            currentRef.srcObject = stream;
           }
           setIsLoading(false);
         }
@@ -42,8 +43,8 @@ const BarcodeScanner = ({ onResult, onClose }) => {
 
     return () => {
       mounted = false;
-      if (ref.current && ref.current.srcObject) {
-        ref.current.srcObject.getTracks().forEach(track => track.stop());
+      if (currentRef && currentRef.srcObject) {
+        currentRef.srcObject.getTracks().forEach(track => track.stop());
       }
     };
   }, [ref]);
