@@ -197,7 +197,7 @@ const FoodInfoApp = () => {
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Lebensmittel eingeben oder scannen" // Das zusätzliche Leerzeichen sorgt für Platz zwischen dem Symbol und dem Text
+                  placeholder="Lebensmittel eingeben oder scannen"
                 />
                 <span className="search-icon">
                   <Search size={22} />
